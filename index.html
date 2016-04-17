@@ -54,7 +54,7 @@
 
  <section class="summary">
    <h2>Links</h2>
-   <p>Links have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section. <a href="./links.html"> More</a></p>
+   <p>Links are the mechanism to decouple the obtantion of information. By locating a link and following it, the client doesn't need to worry about protocol specifics. All links must be in a #links section and at least the fields href and rel must be specified. The rel field is for locating the link and the href holds the action. This could be an URL or an expression for accessing local information without calling a backend. <a href="./links.html"> More</a></p>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: [
@@ -120,17 +120,41 @@
        {
         <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
         <span class="field">"rel"</span>:<span class="string">"reviews"</span>,
-        <span class="field">"headers"</span>:[
+        <span class="field">"headers"</span>:{
                <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
-         ]
+         }
        }          
    ]
      </pre>
      <pre>
    GET http://api.com/products/1/reviews
    X-TID:3d3424ed
-     </pre>
+     </pre>  
    <div>  
+   <div class="siblings json">
+ <pre>
+  <span class="field">"#forms"</span>: [
+      {
+       <span class="field">"id"</span>:<span class="string">"add"</span>,
+       <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+       <span class="field">"method"</span>:<span class="string">"POST"</span>,
+       <span class="field">"headers"</span>:{
+              <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
+         }
+       <span class="field">"inputs"</span>: [
+              ...
+         ]
+      }          
+     ]
+     </pre>
+     <pre>
+        POST http://api.com/products
+        X-TID:3d3424ed
+        {
+          ...
+        }
+     </pre>
+   </div>
  </section>
 
 <section class="summary">
@@ -140,9 +164,9 @@
      <pre>
  <span class="field">"#meta"</span>: [
        {
-        <span class="field">"#headers"</span>:[
+        <span class="field">"#headers"</span>:{
                <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
-         ]
+         }
        }          
    ],
  <span class="field">"#links"</span>: [
