@@ -1,0 +1,36 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sail -  Simple Api Interaction Language - Meta</title>
+   <meta name="description" content="Sail is a hypermedia language for APIs">
+   <meta name="keywords" content="Hypermedia,API,JSON,meta">
+   <link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+<body>
+
+ <header>
+    <div class="header">
+	<a href="./index.html"> Home </a>
+    </div>
+ </header>
+<section class="summary">
+   <h2>Meta</h2>
+   <p>The meta section is used for adding any metada the API wants to publish. For now it's a bit experimental and Sail only defines the field headers which means any request that departs from the current response must have the specified headers.</p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#meta"</span>: [
+       {
+        <span class="field">"headers"</span>:[
+               <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
+         ]
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/resources/1
+   X-TID:3d3424ed
+     </pre>
+   <div>
+ </section>
+</body>
+</html>

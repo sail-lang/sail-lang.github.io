@@ -20,12 +20,13 @@
 
  <section class="summary">
    <h2>Introduction</h2>
-   <p>Sail (Simple Api Interaction Language) is a hypermedia language that aims to simplify the interaction with APIs. When simplifying the interaction, clients are less coupled and changes can be absorbed a bit easier.
+   <p>Sail (Simple Api Interaction Language) is a hypermedia language that aims to simplify the interaction with APIs. When simplifying the interaction, clients are less coupled and changes can be absorbed a bit easier. 
    </p>
-   <p>Decoupling an API client from the data structure is highly difficult, if not impossible. Any attempt to generalize or standardize data structure could make things unnecessarily complex or lose alignment with the business domain. Instead, Sail focuses on simplifying the mechanism to request things to APIs either for getting information or triggering actions, in order to decupling the client as much as possible. For that matter, it uses primarily the hypermedia controls link and form.
+   <p> There are basically two types of coupling between a client and an API: data and communication. Data coupling is related to the data structure of the API responses and communication coupling is associated to the protocol used for requesting things to the API. Changes on the data sctucture as well as the proctocol will affect any client.  
    </p>
-   <p>It is important to clarify that Sail doesn't assume any architectural style, it could be used in RESTful API's as well as in any other approach where the format involved is JSON.
+   <p>Decoupling a client from the data structure is highly difficult, if not impossible. Any attempt to generalize or standardize data structure could make things unnecessarily complex or lose alignment with the business domain. Instead, Sail focuses on simplifying the mechanism to request things to APIs either for getting information or triggering actions, in order to decupling the client as much as possible. For that matter, it uses primarily the hypermedia controls link and form.
    </p>
+
  </section>
 
  <section class="summary">
@@ -53,7 +54,7 @@
 
  <section class="summary">
    <h2>Links</h2>
-   <p>Links in Sail have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section.</p>
+   <p>Links have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section. <a href="./links.html"> More</a></p>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: [
@@ -64,15 +65,14 @@
    ]
      </pre>
      <pre>
-   GET http://api.com/resources/1
+   GET http://api.com/products/1/reviews
      </pre>
-   <div>  
+   <div>
  </section>
-
 
  <section class="summary">
    <h2>Forms</h2>
-   <p>Forms in Sail submmit a JSON body by default.</p>
+   <p>Forms in Sail submmit a JSON body by default. <a href="./forms.html"> More </a></p>
    <div class="siblings json">
      <pre>
   <span class="field">"#forms"</span>: [
@@ -111,5 +111,52 @@
    <div>  
  </section>
 
+ <section class="summary">
+   <h2>Headers</h2>
+   <p>It is common to include headers as part of the API protocol. Lets say it is required to tack all request a user made. For this some APIs define a custom header where a transaction id is spefied for each request associated to the user. In this case the client must know wich header to send generating certain coupling. In Sail, a header section with pre set values can be specifiead in links and forms so the client doesn't need to handle them.   <a href="./headers.html"> More </a></p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+        <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+        <span class="field">"headers"</span>:[
+               <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
+         ]
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/products/1/reviews
+   X-TID:3d3424ed
+     </pre>
+   <div>  
+ </section>
+
+<section class="summary">
+   <h2>Meta</h2>
+   <p>The meta section is used for adding any metada the API wants to publish. For now it's a bit experimental and Sail only defines the field headers which means any request that departs from the current response must have the specified headers. <a href="./meta.html"> More </a></p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#meta"</span>: [
+       {
+        <span class="field">"headers"</span>:[
+               <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
+         ]
+       }          
+   ]
+<span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+        <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/products/1/reviews
+   X-TID:3d3424ed
+     </pre>
+   <div>
+ </section>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sail -  Simple Api Interaction Language -Headers</title>
+   <meta name="description" content="Sail is a hypermedia language for APIs">
+   <meta name="keywords" content="Hypermedia,API,JSON,headers">
+   <link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+<body>
+
+ <header>
+    <div class="header">
+	<a href="./index.html"> Home </a>
+    </div>
+ </header>
+ <section class="summary">
+   <h2>Headers</h2>
+   <p>It is common to include headers as part of the API protocol. Lets say it is required to tack all request a user made. For this some APIs define a custom header where a transaction id is spefied for each request associated to the user. In this case the client must know wich header to send generating certain coupling. In Sail, a header section with pre set values can be specifiead in links and forms so the client doesn't need to handle them.</p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+        <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+        <span class="field">"headers"</span>:[
+               <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
+         ]
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/resources/1
+   X-TID:3d3424ed
+     </pre>
+   <div>  
+ </section>
+</body>
+</html>

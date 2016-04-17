@@ -1,0 +1,59 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sail -  Simple Api Interaction Language - Forms</title>
+   <meta name="description" content="Sail is a hypermedia language for APIs">
+   <meta name="keywords" content="Hypermedia,API,JSON,Form">
+   <link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+<body>
+
+ <header>
+    <div class="header">
+     <a href="./index.html"> Home </a>
+    </div>
+ </header>
+
+ <section class="summary">
+   <h2>Forms</h2>
+   <p>Forms in Sail submmit a JSON body by default.</p>
+   <div class="siblings json">
+     <pre>
+  <span class="field">"#forms"</span>: [
+        {
+         <span class="field">"id"</span>:<span class="string">"add"</span>,
+         <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+         <span class="field">"method"</span>:<span class="string">"POST"</span>,
+         <span class="field">"inputs"</span>: [
+               {
+                <span class="field">"name"</span>:<span class="string">"name"</span>,
+                <span class="field">"value"</span>:
+               },
+               {
+                <span class="field">"name"</span>:<span class="string">"status.code"</span>,
+                <span class="field">"value"</span>:
+               },
+               {
+                <span class="field">"name"</span>:<span class="string">"status.color"</span>,
+                <span class="field">"value"</span>:
+               },
+            ]
+        }          
+     ]
+     </pre>
+     <pre>
+        POST http://api.com/products
+
+	{
+         <span class="field">"name"</span>:<span class="string">"A name"</span>,
+         <span class="field">"status"</span>: {
+           <span class="field">"code"</span>:<span class="string">"A code"</span>,
+           <span class="field">"color"</span>:<span class="string">"A color"</span>
+          }
+        }
+     </pre>
+   <div>  
+ </section>
+
+</body>
+</html>

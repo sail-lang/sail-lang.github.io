@@ -1,0 +1,34 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sail -  Simple Api Interaction Language -Links</title>
+   <meta name="description" content="Sail is a hypermedia language for APIs">
+   <meta name="keywords" content="Hypermedia,API,JSON">
+   <link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+<body>
+
+ <header>
+    <div class="header">
+	<a href="./index.html"> Home </a>
+    </div>
+ </header>
+ <section class="summary">
+   <h2>Links</h2>
+   <p>Links in Sail have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section.</p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+        <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/products/1/reviews
+     </pre>
+   <div>
+ </section>
+</body>
+</html>
