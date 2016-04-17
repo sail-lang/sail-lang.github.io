@@ -135,17 +135,17 @@
 
 <section class="summary">
    <h2>Meta</h2>
-   <p>The meta section is used for adding any metada the API wants to publish. For now it's a bit experimental and Sail only defines the field headers which means any request that departs from the current response must have the specified headers. <a href="./meta.html"> More </a></p>
+   <p>The meta section is used for adding any metada the API wants to publish. For now it's a bit experimental and Sail only defines the field #headers which means any request that departs from the current response must have the specified headers. <a href="./meta.html"> More </a></p>
    <div class="siblings json">
      <pre>
  <span class="field">"#meta"</span>: [
        {
-        <span class="field">"headers"</span>:[
+        <span class="field">"#headers"</span>:[
                <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
          ]
        }          
-   ]
-<span class="field">"#links"</span>: [
+   ],
+ <span class="field">"#links"</span>: [
        {
         <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
         <span class="field">"rel"</span>:<span class="string">"reviews"</span>
