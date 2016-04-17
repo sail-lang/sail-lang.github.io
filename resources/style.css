@@ -17,20 +17,56 @@ body {
  font-weight:bold;
 }
 
-.intro {
+.main {
  text-align: center;
- margin-top: 102px;
+ margin-top: 70px;
+ margin-bottom: 50px;
 }
-.intro h1 {
+.main h1 {
  font-family:"Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
  font-size: 60px;
  color: #333;
 }
 
-.intro h2 {
-    color: #535353;
-    font-family: 'helvetica neue', Helvetica, Arial;
-    font-weight: 300;
-    font-size: 30px;
+.main h2 {
+ color: #535353;
+ font-family: 'helvetica neue', Helvetica, Arial;
+ font-weight: 300;
+ font-size: 30px;
+}
+
+.summary {
+ margin: 0px 10px 50px 20px;
+ font-family: "Helvetica Neue", Helvetica, Arial;
+ font-size: 18px;
+}
+
+.summary h2 {
+ font-weight: bold;
+ font-size: 30px;
+}
+
+.summary .siblings{
+    width: 100%;
+    display: inline-block;
+}
+
+.json pre {
+ font-size: larger;
+ float:left;
+}
+
+.json .field {
+   color: green;
+   margin-left: 12px;
+}
+
+.json .string {
+   color: navy;
+   margin-left: 12px;
+}
+
+.json .value {
+   color: navy;
 }
 

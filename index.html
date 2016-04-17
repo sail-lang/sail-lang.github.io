@@ -11,12 +11,105 @@
  <header>
     <div class="header">
     </div>
-  </header>
+ </header>
 
-  <section class="intro">
-     <h1>Sail #</h1>
-     <h2>Simple Api Interaction Language</h2>  
-  </section>
+ <section class="main">
+    <h1>Sail #</h1>
+    <h2>Simple Api Interaction Language</h2>  
+ </section>
+
+ <section class="summary">
+   <h2>Introduction</h2>
+   <p>Sail (Simple Api Interaction Language) is a hypermedia language that aims to simplify the interaction with APIs. When simplifying the interaction, clients are less coupled and changes can be absorbed a bit easier.
+   </p>
+   <p>Decoupling an API client from the data structure is highly difficult, if not impossible. Any attempt to generalize or standardize data structure could make things unnecessarily complex or lose alignment with the business domain. Instead, Sail focuses on simplifying the mechanism to request things to APIs either for getting information or triggering actions, in order to decupling the client as much as possible. For that matter, it uses primarily the hypermedia controls link and form.
+   </p>
+   <p>It is important to clarify that Sail doesn't assume any architectural style, it could be used in RESTful API's as well as in any other approach where the format involved is JSON.
+   </p>
+ </section>
+
+ <section class="summary">
+   <h2>The format</h2>
+   <p>Sail uses a JSON based format where anything that belongs to the language is marked with a <strong>#</strong>
+   </p>
+   <div class="siblings json">
+     <pre>
+ { 
+  <span class="field">"#links"</span>: []
+ }
+    </pre>
+    <pre>
+   {
+    <span class="field">"#forms"</span>: []
+   }
+    </pre>
+    <pre>
+   {
+    <span class="field">"#meta"</span>: []
+   }
+     </pre>
+   </div>
+ </section>
+
+ <section class="summary">
+   <h2>Links</h2>
+   <p>Links in Sail have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section.</p>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+        <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+       }          
+   ]
+     </pre>
+     <pre>
+   GET http://api.com/resources/1
+     </pre>
+   <div>  
+ </section>
+
+
+ <section class="summary">
+   <h2>Forms</h2>
+   <p>Forms in Sail submmit a JSON body by default.</p>
+   <div class="siblings json">
+     <pre>
+  <span class="field">"#forms"</span>: [
+        {
+         <span class="field">"id"</span>:<span class="string">"add"</span>,
+         <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+         <span class="field">"method"</span>:<span class="string">"POST"</span>,
+         <span class="field">"inputs"</span>: [
+               {
+                <span class="field">"name"</span>:<span class="string">"name"</span>,
+                <span class="field">"value"</span>:
+               },
+               {
+                <span class="field">"name"</span>:<span class="string">"status.code"</span>,
+                <span class="field">"value"</span>:
+               },
+               {
+                <span class="field">"name"</span>:<span class="string">"status.color"</span>,
+                <span class="field">"value"</span>:
+               },
+            ]
+        }          
+     ]
+     </pre>
+     <pre>
+        POST http://api.com/products
+
+	{
+         <span class="field">"name"</span>:<span class="string">"A name"</span>,
+         <span class="field">"status"</span>: {
+           <span class="field">"code"</span>:<span class="string">"A code"</span>,
+           <span class="field">"color"</span>:<span class="string">"A color"</span>
+          }
+        }
+     </pre>
+   <div>  
+ </section>
 
 </body>
 </html>
