@@ -72,7 +72,7 @@
 
  <section class="summary">
    <h2>Forms</h2>
-   <p>Forms in Sail submmit a JSON body by default. <a href="./forms.html"> More </a></p>
+   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a #form section. <a href="./forms.html"> More </a></p>
    <div class="siblings json">
      <pre>
   <span class="field">"#forms"</span>: [
@@ -113,7 +113,7 @@
 
  <section class="summary">
    <h2>Headers</h2>
-   <p>It is common to include headers as part of the API protocol. Lets say it is required to tack all request a user made. For this some APIs define a custom header where a transaction id is spefied for each request associated to the user. In this case the client must know wich header to send generating certain coupling. In Sail, a header section with pre set values can be specifiead in links and forms so the client doesn't need to handle them.   <a href="./headers.html"> More </a></p>
+   <p>It is common to include headers as part of the API protocol. Lets say it is required to track all request asociated to a specific user. Some APIs define a custom header where a transaction id must be specified in each request. In this case the client must know which header to send generating certain coupling. In Sail, a header section with pre-set values can be specifiead in links and forms so the client doesn't need to handle them.   <a href="./headers.html"> More </a></p>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: [
