@@ -52,9 +52,9 @@
    </div>
  </section>
 
- <section class="summary">
+ <section id="links" class="summary">
    <h2>Links</h2>
-   <p>Links are the mechanism to decouple the obtantion of information. By locating a link and following it, the client doesn't need to worry about protocol specifics. All links must be in a #links section and at least the fields href and rel must be specified. The rel field is for locating the link and the href holds the action. This could be an URL or an expression for accessing local information without calling a backend. <a href="./links.html"> More</a></p>
+   <p>Links are the mechanism to decouple the request for information. By locating a link and following it, the client doesn't need to worry about protocol specifics. All links must be in a #links section and at least the fields href and rel must be specified. The rel field is for locating the link and the href holds the action. This could be an URL or an expression for accessing local information without calling a backend. <a href="./links.html"> More</a></p>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: [
@@ -70,7 +70,7 @@
    <div>
  </section>
 
- <section class="summary">
+ <section id="forms" class="summary">
    <h2>Forms</h2>
    <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a #form section. <a href="./forms.html"> More </a></p>
    <div class="siblings json">
@@ -78,7 +78,7 @@
   <span class="field">"#forms"</span>: [
         {
          <span class="field">"id"</span>:<span class="string">"add"</span>,
-         <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+         <span class="field">"action"</span>:<span class="string">"http://api.com/cities"</span>,
          <span class="field">"method"</span>:<span class="string">"POST"</span>,
          <span class="field">"inputs"</span>: [
                {
@@ -86,32 +86,32 @@
                 <span class="field">"value"</span>:
                },
                {
-                <span class="field">"name"</span>:<span class="string">"status.code"</span>,
+                <span class="field">"name"</span>:<span class="string">"coordinate.latitude"</span>,
                 <span class="field">"value"</span>:
                },
                {
-                <span class="field">"name"</span>:<span class="string">"status.color"</span>,
+                <span class="field">"name"</span>:<span class="string">"coordinate.longitude"</span>,
                 <span class="field">"value"</span>:
-               },
+               }
             ]
         }          
      ]
      </pre>
      <pre>
-        POST http://api.com/products
+        POST http://api.com/cities
 
 	{
-         <span class="field">"name"</span>:<span class="string">"A name"</span>,
-         <span class="field">"status"</span>: {
-           <span class="field">"code"</span>:<span class="string">"A code"</span>,
-           <span class="field">"color"</span>:<span class="string">"A color"</span>
-          }
+         <span class="field">"name"</span>:<span class="string">"A city"</span>,
+         <span class="field">"coordinate"</span>: {
+           <span class="field">"latitude"</span>:<span class="string">-34.9204529</span>,
+           <span class="field">"longitude"</span>:<span class="string">-57.9882757</span>
+           }
         }
      </pre>
    <div>  
  </section>
 
- <section class="summary">
+ <section id="headers" class="summary">
    <h2>Headers</h2>
    <p>It is common to include headers as part of the API protocol. Lets say it is required to track all request asociated to a specific user. Some APIs define a custom header where a transaction id must be specified in each request. In this case the client must know which header to send generating certain coupling. In Sail, a header section with pre-set values can be specifiead in links and forms so the client doesn't need to handle them.   <a href="./headers.html"> More </a></p>
    <div class="siblings json">
@@ -157,7 +157,7 @@
    </div>
  </section>
 
-<section class="summary">
+<section id="meta" class="summary">
    <h2>Meta</h2>
    <p>The meta section is used for adding any metada the API wants to publish. For now it's a bit experimental and Sail only defines the field #headers which means any request that departs from the current response must have the specified headers. <a href="./meta.html"> More </a></p>
    <div class="siblings json">

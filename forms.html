@@ -10,19 +10,19 @@
 
  <header>
     <div class="header">
-     <a href="./index.html"> Home </a>
+     <a href="./index.html#forms"> Home </a>
     </div>
  </header>
 
  <section class="summary">
    <h2>Forms</h2>
-   <p>Forms in Sail submmit a JSON body by default.</p>
+   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a #form section.</p>
    <div class="siblings json">
      <pre>
   <span class="field">"#forms"</span>: [
         {
          <span class="field">"id"</span>:<span class="string">"add"</span>,
-         <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+         <span class="field">"action"</span>:<span class="string">"http://api.com/cities"</span>,
          <span class="field">"method"</span>:<span class="string">"POST"</span>,
          <span class="field">"inputs"</span>: [
                {
@@ -30,13 +30,13 @@
                 <span class="field">"value"</span>:
                },
                {
-                <span class="field">"name"</span>:<span class="string">"status.code"</span>,
+                <span class="field">"name"</span>:<span class="string">"coordinate.latitude"</span>,
                 <span class="field">"value"</span>:
                },
                {
-                <span class="field">"name"</span>:<span class="string">"status.color"</span>,
+                <span class="field">"name"</span>:<span class="string">"coordinate.longitude"</span>,
                 <span class="field">"value"</span>:
-               },
+               }
             ]
         }          
      ]
@@ -45,15 +45,23 @@
         POST http://api.com/products
 
 	{
-         <span class="field">"name"</span>:<span class="string">"A name"</span>,
-         <span class="field">"status"</span>: {
-           <span class="field">"code"</span>:<span class="string">"A code"</span>,
-           <span class="field">"color"</span>:<span class="string">"A color"</span>
-          }
+         <span class="field">"name"</span>:<span class="string">"A city"</span>,
+         <span class="field">"coordinate"</span>: {
+           <span class="field">"latitude"</span>:<span class="string">-34.9204529</span>,
+           <span class="field">"longitude"</span>:<span class="string">-57.9882757</span>
+           }
         }
      </pre>
    <div>  
  </section>
-
+ <section class="summary">
+  <h3>Inmutable forms</h3>
+ </section>
+ <section class="summary">
+  <h3>select</h3>
+ </section>
+ <section class="summary">
+  <h3>multilect</h3>
+ </section>
 </body>
 </html>
