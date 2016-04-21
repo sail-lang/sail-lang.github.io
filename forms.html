@@ -16,52 +16,127 @@
 
  <section class="summary">
    <h2>Forms</h2>
-   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a #form section.</p>
-   <div class="siblings json">
+   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a <strong>#form</strong> section. The fields id, action and method are required whereas the body is optional.</p>
+ </section>
+ <section class="summary">
+  <h3>Immutable forms</h3>
+  <p>The most useful forms are those that don't need to be filled. If the API can provide a form with all fields/inputs pre-set, the client only needs to submit the form without worrying about what is inside. When the API evolves to something that requires new or different fields that also can be pre-set, the client is not affected at all. This types of forms are called immutable and are specified with the field <strong>body</strong>. It is expected that the client doesn't change anything of what it is in the field body.
+  </p>
+  <div class="siblings json">
      <pre>
-  <span class="field">"#forms"</span>: [
-        {
-         <span class="field">"id"</span>:<span class="string">"add"</span>,
-         <span class="field">"action"</span>:<span class="string">"http://api.com/cities"</span>,
-         <span class="field">"method"</span>:<span class="string">"POST"</span>,
-         <span class="field">"inputs"</span>: [
-               {
-                <span class="field">"name"</span>:<span class="string">"name"</span>,
-                <span class="field">"value"</span>:
-               },
-               {
-                <span class="field">"name"</span>:<span class="string">"coordinate.latitude"</span>,
-                <span class="field">"value"</span>:
-               },
-               {
-                <span class="field">"name"</span>:<span class="string">"coordinate.longitude"</span>,
-                <span class="field">"value"</span>:
-               }
-            ]
-        }          
-     ]
+<span class="field">"#forms"</span>: [
+      {
+        <span class="field">"id"</span>:<span class="string">"add"</span>,
+        <span class="field">"action"</span>:<span class="string">"http://api.com/carts/23423"</span>,
+        <span class="field">"method"</span>:<span class="string">"POST"</span>,
+        <span class="field">"body"</span>: {
+              <span class="field">"id"</span>:<span class="string">"324234"</span>
+            }
+       }          
+    ]
+     </pre>
+     <pre>
+        POST http://api.com/carts/23423
+
+	{
+          <span class="field">"id"</span>:<span class="string">"324234"</span>
+        }
+     </pre>
+  </div>
+ </section>
+ <section class="summary">
+  <h3>Regular forms</h3>
+  <p>In several cases, forms can't be pre-set and some values must be provided by the client. Forms that have to be filled are called regular and the body is specified in the field <strong>inputs</strong>. Though this forms generates certain level of coupling, as the client needs to know what must be filled, it offers some advantages like decoupling part of the protocol specifics (URL and HTTP verb) and it advertises what the API is expecting as the body. Through the use of inputs and its variants (select, multiselect, etc) some things can be done in order to minimize the coupling as much as possible. 
+  </p>
+ <div class="siblings json">
+     <pre>
+ <span class="field">"#forms"</span>: [
+     {
+       <span class="field">"id"</span>:<span class="string">"add"</span>,
+       <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+       <span class="field">"method"</span>:<span class="string">"POST"</span>,
+       <span class="field">"inputs"</span>: [
+             {
+              <span class="field">"name"</span>:<span class="string">"name"</span>,
+              <span class="field">"value"</span>:
+             },
+             {
+              <span class="field">"name"</span>:<span class="string">"description"</span>,
+              <span class="field">"value"</span>:
+             }
+          ]
+      }          
+   ]
      </pre>
      <pre>
         POST http://api.com/products
 
 	{
-         <span class="field">"name"</span>:<span class="string">"A city"</span>,
-         <span class="field">"coordinate"</span>: {
-           <span class="field">"latitude"</span>:<span class="string">-34.9204529</span>,
-           <span class="field">"longitude"</span>:<span class="string">-57.9882757</span>
-           }
+         <span class="field">"name"</span>:<span class="string">"A product"</span>,
+         <span class="field">"description"</span>:<span class="string">"A great product"</span>
         }
      </pre>
-   <div>  
+   </div>
+  <p>There are tree types of inputs: simple, select and multiselect (but there is some work in progress to provide more alternatives). A simple input specifies a name and a value to be provided. It's the most basic type of input and the client must provide the value, although a default value can be specified. Select and multiselect offer the possibility to specify which values are allowed for that field. As their names suggest, a select input only allows one option to be selected whereas the multiselect allows multiple values to be selected at the same time.</p>
+ <div class="siblings json">
+     <pre>
+<span class="field">"#forms"</span>: [
+     {
+       <span class="field">"id"</span>:<span class="string">"add"</span>,
+       <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
+       <span class="field">"method"</span>:<span class="string">"POST"</span>,
+       <span class="field">"inputs"</span>: [
+            {
+              <span class="field">"name"</span>:<span class="string">"name"</span>,
+              <span class="field">"value"</span>:
+            },
+            {
+              <span class="field">"name"</span>:<span class="string">"color"</span>,
+              <span class="field">"select"</span>:[
+                 {
+                     <span class="field">"title"</span>:<span class="string">"Red"</span>,
+                     <span class="field">"value"</span>:<span class="string">"RED"</span>
+                 },
+                 {
+                     <span class="field">"title"</span>:<span class="string">"Green"</span>,
+                     <span class="field">"value"</span>:<span class="string">"GREEN"</span>
+                 }
+              ]
+            },
+            {
+              <span class="field">"name"</span>:<span class="string">"categories"</span>,
+              <span class="field">"multiselect"</span>:[
+                 {
+                     <span class="field">"title"</span>:<span class="string">"Audio"</span>,
+                     <span class="field">"value"</span>:<span class="string">"AUDIO"</span>
+                 },
+                 {
+                     <span class="field">"title"</span>:<span class="string">"Technology"</span>,
+                     <span class="field">"value"</span>:<span class="string">"TECH"</span>
+                 },
+                 {
+                     <span class="field">"title"</span>:<span class="string">"Books & Magazines"</span>,
+                     <span class="field">"value"</span>:<span class="string">"BOOK"</span>
+                 }
+              ]
+             }
+          ]
+      }          
+   ]
+     </pre>
+     <pre>
+        POST http://api.com/products
+
+	{
+         <span class="field">"name"</span>:<span class="string">"Player"</span>,
+         <span class="field">"color"</span>:<span class="string">"RED"</span>,
+         <span class="field">"categories"</span>: [<span class="string">"AUDIO"</span> ,<span class="string">"TECH"</span>]
+        }
+     </pre>
+   </div>  
  </section>
  <section class="summary">
-  <h3>Inmutable forms</h3>
- </section>
- <section class="summary">
-  <h3>select</h3>
- </section>
- <section class="summary">
-  <h3>multilect</h3>
+  <h3>Combined forms</h3>
  </section>
 </body>
 </html>
