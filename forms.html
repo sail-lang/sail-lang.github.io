@@ -46,7 +46,7 @@
  </section>
  <section class="summary">
   <h3>Regular forms</h3>
-  <p>In several cases, forms can't be pre-set and some values must be provided by the client. Forms that have to be filled are called regular and the body is specified in the field <strong>inputs</strong>. Though this forms generates certain level of coupling, as the client needs to know what must be filled, it offers some advantages like decoupling part of the protocol specifics (URL and HTTP verb) and it advertises what the API is expecting as the body. Through the use of inputs and its variants (select, multiselect, etc) some things can be done in order to minimize the coupling as much as possible. 
+  <p>In several cases, forms can't be pre-set and some values must be provided by the client. Forms that have to be filled are called regular and the body is specified in the field <strong>inputs</strong>. Though this forms generates certain level of coupling, as the client needs to know what must be filled, it still offers some advantages like decoupling part of the protocol specifics (URL and HTTP verb) and it advertises what the API is expecting as the body. Through the use of inputs and its variants (select, multiselect, etc) some things can be done in order to minimize the coupling as much as possible. 
   </p>
  <div class="siblings json">
      <pre>
@@ -137,6 +137,41 @@
  </section>
  <section class="summary">
   <h3>Combined forms</h3>
- </section>
+  <p>It is not unlikely to face a scenario where part of the form must be immutable but other part must be provided by the client. A combined form is a merge between immutable froms and regular, where both <strong>body</strong> and <strong>inputs</strong> fields are specified.
+  </p>
+<div class="siblings json">
+     <pre>
+<span class="field">"#forms"</span>: [
+     {
+      <span class="field">"id"</span>:<span class="string">"transfer"</span>,
+      <span class="field">"action"</span>:<span class="string">"http://api.com/bank-transfers"</span>,
+      <span class="field">"method"</span>:<span class="string">"POST"</span>,
+      <span class="field">"body"</span>: {
+         <span class="field">"from"</span>:<span class="string">"324234"</span>
+       }, 
+      <span class="field">"inputs"</span>: [
+          {
+           <span class="field">"name"</span>:<span class="string">"to"</span>,
+           <span class="field">"value"</span>:
+          },
+          {
+           <span class="field">"name"</span>:<span class="string">"amount"</span>,
+           <span class="field">"value"</span>:
+          }
+        ]
+      }          
+   ]
+     </pre>
+     <pre>
+        POST http://api.com/bank-transfers
+
+	{
+         <span class="field">"from"</span>:<span class="string">"324234"</span>,
+         <span class="field">"to"</span>:<span class="string">"4324324"</span>,
+         <span class="field">"amount"</span>:<span class="string">"100"</span>
+        }
+     </pre>
+  </div>
+</section>
 </body>
 </html>
