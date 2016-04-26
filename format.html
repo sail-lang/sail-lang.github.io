@@ -1,0 +1,51 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sail -  Simple Api Interaction Language -Format</title>
+   <meta name="description" content="Sail is a hypermedia language for APIs">
+   <meta name="keywords" content="Hypermedia,API,JSON">
+   <link rel="stylesheet" type="text/css" href="resources/style.css">
+</head>
+<body>
+
+ <header>
+    <div class="header">
+	<a href="./index.html#format"> Home </a>
+    </div>
+ </header>
+ <section class="summary">
+   <h2>Format</h2>
+   <p>Work in progres ...</p>
+ </section>
+ <section class="summary">
+ 
+ <div class="siblings json">
+     <pre>
+ {
+  <span class="field">"id"</span>:<span class="string">"323dwe23"</span>,
+  <span class="field">"name"</span>:<span class="string">"Great product"</span>,
+  <span class="field">"manufacturer"</span>: {
+     <span class="field">"name"</span>:<span class="string">"Awesome manufacturer"</span>,
+     <span class="field">"#links"</span>: [
+        {
+         <span class="field">"href"</span>:<span class="string">"http://api.com/products?manufacturer=4433434"</span>,
+         <span class="field">"rel"</span>:<span class="string">"products"</span>
+        },
+        {
+         <span class="field">"href"</span>:<span class="string">"http://api.com/manufacturers/4433434/rating"</span>,
+         <span class="field">"rel"</span>:<span class="string">"rating"</span>
+        }    
+      ]   
+   },
+  <span class="field">"#links"</span>: [
+    {
+      <span class="field">"href"</span>:<span class="string">"http://api.com/products/323dwe23/reviews"</span>,
+      <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+    }    
+   ]
+ }
+    </pre>
+  </div>
+ </section>
+</body>
+</html>

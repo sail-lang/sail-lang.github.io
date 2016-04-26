@@ -29,9 +29,9 @@
 
  </section>
 
- <section class="summary">
+ <section id="format" class="summary">
    <h2>The format</h2>
-   <p>Sail uses a JSON based format where anything that belongs to the language is marked with a <strong>#</strong>
+   <p>Sail uses a JSON based format where anything that belongs to the language is marked with a <strong>#</strong> and it defines a media type <strong>application/vnd.sail+json</strong>
    </p>
    <div class="siblings json">
      <pre>
@@ -50,6 +50,7 @@
    }
      </pre>
    </div>
+ <p><strong>#links</strong> and <strong>#forms</strong> sections can be specified in any part of the response and several times, whereas <strong>#meta</strong> can be specified only once at the root of the json response. <a href="./format.html">More</a> 
  </section>
 
  <section id="links" class="summary">

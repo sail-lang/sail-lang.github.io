@@ -14,8 +14,11 @@
     </div>
  </header>
  <section class="summary">
-   <h2>Links</h2>
-   <p>Links in Sail have a very simple structure. At least an href and rel fields must be specified. All links must be in a #links section.</p>
+   <h2>Links (Work in progress)</h2>
+   <p>Links have a very simple structure where the rel and href field are required. The rel field is for locating the link in order to follow it. The href fields contains the mechanism for getting the related information. This mechanism could trigger a request to a backend or it could be an expression that must be executed in the client side upon the response.</p>
+ </section>
+ <section class="summary">
+  <h3>Links to backend</h3>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: [
@@ -27,6 +30,27 @@
      </pre>
      <pre>
    GET http://api.com/products/1/reviews
+     </pre>
+   <div>
+ </section>
+<section class="summary">
+  <h3>Client side links</h3>
+   <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: [
+       {
+        <span class="field">"href"</span>:<span class="string">"jsonpath://$.manufacturers.13324"</span>,
+        <span class="field">"rel"</span>:<span class="string">"manufacturer"</span>
+       }          
+   ],
+ <span class="field">"manufacturers"</span>: {
+     <span class="field">"13324"</span>: {
+                  ....
+       }
+   }
+     </pre>
+     <pre>
+   
      </pre>
    <div>
  </section>
