@@ -21,7 +21,7 @@ a {
 
 .main {
  text-align: center;
- margin-top: 44px;
+ margin-top: 20px;
  margin-bottom: 50px;
 }
 .main h1 {
@@ -29,6 +29,7 @@ a {
  font-size: 60px;
  color: #333;
  margin-bottom: 10px;
+ margin-top: 0px;
 }
 
 .main img {
