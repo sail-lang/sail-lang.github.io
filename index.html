@@ -37,12 +37,12 @@
    <div class="siblings json">
      <pre>
  { 
-  <span class="field">"#links"</span>: []
+  <span class="field">"#links"</span>: {}
  }
     </pre>
     <pre>
    {
-    <span class="field">"#forms"</span>: []
+    <span class="field">"#forms"</span>: {}
    }
     </pre>
     <pre>
@@ -56,29 +56,50 @@
 
  <section id="links" class="summary">
    <h2>Links</h2>
-   <p>Links are the mechanism to decouple the request for information. By locating a link and following it, the client doesn't need to worry about protocol specifics. All links must be in a <strong>#links</strong> section and at least the fields href and rel must be specified. The rel field is for locating the link and the href holds the action. This could be an URL or an expression for accessing local information without calling a backend. <a href="./links.html"> More</a></p>
+   <p>By locating a link and following it, the client doesn't need to worry about protocol specifics (HTTP verb, query parameters, etc). All links must be in a <strong>#links</strong> section and at least the fields href and rel must be specified. The rel field is for locating the link and the href holds the action. This could be an URL or an expression for accessing local information without calling a backend. <a href="./links.html"> More</a></p>
    <div class="siblings json">
      <pre>
- <span class="field">"#links"</span>: [
-       {
+ <span class="field">"#links"</span>: {
+    <span class="field">"reviews"</span>: {
         <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
         <span class="field">"rel"</span>:<span class="string">"reviews"</span>
        }          
-   ]
+   }
      </pre>
      <pre>
    GET http://api.com/products/1/reviews
      </pre>
    <div>
+
+  <div class="siblings json">
+     <pre>
+ <span class="field">"#links"</span>: {
+    <span class="field">"airline"</span>: {
+        <span class="field">"href"</span>:<span class="string">"sailpath://$.airlines.ux"</span>,
+        <span class="field">"rel"</span>:<span class="string">"airline"</span>
+       }          
+   }
+     </pre>
+       <pre>
+          {  ...
+             
+           <span class="field">"airlines"</span>: {
+               <span class="field">"ux"</span>: {
+
+               }
+            }          
+          }
+       </pre>
+   <div>
  </section>
 
  <section id="forms" class="summary">
    <h2>Forms</h2>
-   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs, headers and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a <strong>#form</strong> section. <a href="./forms.html"> More </a></p>
+   <p>Forms are the mechanism for decoupling actions like creation, modification or deletion. When using forms the client doesn't need to cope with URLs, HTTP verbs and even in some cases with bodies. By default forms submmit a JSON body, but other body formats can be specified. All forms must be specified in a <strong>#form</strong> section. <a href="./forms.html"> More </a></p>
    <div class="siblings json">
      <pre>
-  <span class="field">"#forms"</span>: [
-        {
+  <span class="field">"#forms"</span>: {
+      <span class="field">"add"</span>:{
          <span class="field">"id"</span>:<span class="string">"add"</span>,
          <span class="field">"action"</span>:<span class="string">"http://api.com/cities"</span>,
          <span class="field">"method"</span>:<span class="string">"POST"</span>,
@@ -97,7 +118,7 @@
                }
             ]
         }          
-     ]
+     }
      </pre>
      <pre>
         POST http://api.com/cities
@@ -118,15 +139,18 @@
    <p>It is common to include headers as part of the API protocol. Lets say it is required to track all requests asociated to a specific user. Some APIs define a custom header where a transaction id must be specified in each request. In this case the client must know which header to send generating certain coupling. In Sail, a header section with pre-set values can be specifiead in links and forms so the client doesn't need to handle them.   <a href="./headers.html"> More </a></p>
    <div class="siblings json">
      <pre>
- <span class="field">"#links"</span>: [
-       {
+ <span class="field">"#links"</span>: {
+    <span class="field">"reviews"</span>:{
         <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
         <span class="field">"rel"</span>:<span class="string">"reviews"</span>,
-        <span class="field">"headers"</span>:{
-               <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
-         }
+        <span class="field">"headers"</span>[
+              {
+               <span class="field">"name"</span>:<span class="string">"X-TID"</span>
+               <span class="field">"value"</span>:<span class="string">"3d3424ed"</span>
+              }
+         ]
        }          
-   ]
+   }
      </pre>
      <pre>
    GET http://api.com/products/1/reviews
@@ -135,19 +159,22 @@
    <div>  
    <div class="siblings json">
  <pre>
-  <span class="field">"#forms"</span>: [
-      {
+  <span class="field">"#forms"</span>: {
+    <span class="field">"add"</span>:{
        <span class="field">"id"</span>:<span class="string">"add"</span>,
        <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
        <span class="field">"method"</span>:<span class="string">"POST"</span>,
-       <span class="field">"headers"</span>:{
-              <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
-         }
+       <span class="field">"headers"</span>:[
+              {
+               <span class="field">"name"</span>:<span class="string">"X-TID"</span>
+               <span class="field">"value"</span>:<span class="string">"3d3424ed"</span>
+              }
+         ],
        <span class="field">"inputs"</span>: [
               ...
          ]
       }          
-     ]
+     }
      </pre>
      <pre>
         POST http://api.com/products
@@ -165,16 +192,16 @@
    <div class="siblings json">
      <pre>
  <span class="field">"#meta"</span>:{
-        <span class="field">"#headers"</span>:{
+        <span class="field">"#headers"</span>:[
                <span class="field">"X-TID"</span>:<span class="string">"3d3424ed"</span>
-         }
+         ]
     },
- <span class="field">"#links"</span>: [
-       {
+ <span class="field">"#links"</span>: {
+    <span class="field">"reviews"</span>:{
         <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
         <span class="field">"rel"</span>:<span class="string">"reviews"</span>
        }          
-   ]
+   }
      </pre>
      <pre>
    GET http://api.com/products/1/reviews

@@ -24,8 +24,8 @@
   </p>
   <div class="siblings json">
      <pre>
-<span class="field">"#forms"</span>: [
-      {
+<span class="field">"#forms"</span>: {
+    <span class="field">"add"</span>: {
         <span class="field">"id"</span>:<span class="string">"add"</span>,
         <span class="field">"action"</span>:<span class="string">"http://api.com/carts/23423"</span>,
         <span class="field">"method"</span>:<span class="string">"POST"</span>,
@@ -33,7 +33,7 @@
               <span class="field">"id"</span>:<span class="string">"324234"</span>
             }
        }          
-    ]
+    }
      </pre>
      <pre>
         POST http://api.com/carts/23423
@@ -50,8 +50,8 @@
   </p>
  <div class="siblings json">
      <pre>
- <span class="field">"#forms"</span>: [
-     {
+ <span class="field">"#forms"</span>: {
+    <span class="field">"add"</span>:{
        <span class="field">"id"</span>:<span class="string">"add"</span>,
        <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
        <span class="field">"method"</span>:<span class="string">"POST"</span>,
@@ -66,7 +66,7 @@
              }
           ]
       }          
-   ]
+   }
      </pre>
      <pre>
         POST http://api.com/products
@@ -80,8 +80,8 @@
   <p>There are tree types of inputs: simple, select and multiselect (but there is some work in progress to provide more alternatives). A simple input specifies a name and a value to be provided. It's the most basic type of input and the client must provide the value, although a default value can be specified. Select and multiselect offer the possibility to specify which values are allowed for that field. As their names suggest, a select input only allows one option to be selected whereas the multiselect allows multiple values to be selected at the same time.</p>
  <div class="siblings json">
      <pre>
-<span class="field">"#forms"</span>: [
-     {
+<span class="field">"#forms"</span>: {
+   <span class="field">"add"</span>: {
        <span class="field">"id"</span>:<span class="string">"add"</span>,
        <span class="field">"action"</span>:<span class="string">"http://api.com/products"</span>,
        <span class="field">"method"</span>:<span class="string">"POST"</span>,
@@ -122,7 +122,7 @@
              }
           ]
       }          
-   ]
+   }
      </pre>
      <pre>
         POST http://api.com/products
@@ -141,8 +141,8 @@
   </p>
 <div class="siblings json">
      <pre>
-<span class="field">"#forms"</span>: [
-     {
+<span class="field">"#forms"</span>: {
+    <span class="field">"transfer"</span>: {
       <span class="field">"id"</span>:<span class="string">"transfer"</span>,
       <span class="field">"action"</span>:<span class="string">"http://api.com/bank-transfers"</span>,
       <span class="field">"method"</span>:<span class="string">"POST"</span>,
@@ -160,7 +160,7 @@
           }
         ]
       }          
-   ]
+   }
      </pre>
      <pre>
         POST http://api.com/bank-transfers
