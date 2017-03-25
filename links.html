@@ -14,11 +14,10 @@
     </div>
  </header>
  <section class="summary">
-   <h2>Links (Work in progress)</h2>
-   <p>Links have a very simple structure where the rel and href field are required. The rel field is for locating the link in order to follow it. The href fields contains the mechanism for getting the related information. This mechanism could trigger a request to a backend or it could be an expression that must be executed in the client side upon the response.</p>
+   <h2>Links</h2>
+   <p>Links have a very simple structure where the rel and href field are required. The rel field is for locating the link in order to follow it. All links must be in a <strong>#links</strong> section. Each field of this section is the rel value of the link, so links can be located directly, but also the rel value is specified in the link as in some scenarios, it is useful to access links as an array. The href fields contains the mechanism for getting the related information. This mechanism could trigger a request to a backend or it could be an expression that must be executed in the client side upon the response.</p>
  </section>
  <section class="summary">
-  <h3>Links to backend</h3>
    <div class="siblings json">
      <pre>
  <span class="field">"#links"</span>: {
@@ -33,27 +32,84 @@
      </pre>
    <div>
  </section>
-<section class="summary">
-  <h3>Client side links</h3>
-  <p></p>
+ <section class="summary">
+   <h2>Links anywhere</h2>
+   <p>Links can be specified at any part of the response. That means <strong>#links</strong> section can be located anywhere as many times as need it, as long as it is not repeated more than once at the same level. </p>
+
    <div class="siblings json">
-     <pre>
- <span class="field">"#links"</span>: {
-     <span class="field">"manufacturer"</span>:  {
-        <span class="field">"href"</span>:<span class="string">"sailpath://$.manufacturers.13324"</span>,
-        <span class="field">"rel"</span>:<span class="string">"manufacturer"</span>
-       }          
-   },
- <span class="field">"manufacturers"</span>: {
-     <span class="field">"13324"</span>: {
-                  ....
+   <pre>
+    {
+     <span class="field">"id"</span>: <span class="string">"1"</span>,
+     <span class="field">"name"</span>: <span class="string">"Great product"</span>,
+     <span class="field">"manufacturer"</span>: {
+         <span class="field">"name"</span>: <span class="string">"The manufacturer"</span>,
+         <span class="field">"#links"</span>: {
+            <span class="field">"detail"</span>: {
+               <span class="field">"href"</span>:<span class="string">"http://api.com/manufacturers/A"</span>,
+               <span class="field">"rel"</span>:<span class="string">"detail"</span>
+              }
+           }      
+       },
+     <span class="field">"#links"</span>: {
+         <span class="field">"reviews"</span>: {
+            <span class="field">"href"</span>:<span class="string">"http://api.com/products/1/reviews"</span>,
+            <span class="field">"rel"</span>:<span class="string">"reviews"</span>
+           },
+         <span class="field">"similar"</span>: {
+            <span class="field">"href"</span>:<span class="string">"http://api.com/products?similar=1"</span>,
+            <span class="field">"rel"</span>:<span class="string">"similar"</span>
+           }          
        }
-   }
-     </pre>
-     <pre>
-   
-     </pre>
-   <div>
+     }
+    </pre>
+   </div>
+
+ </section>
+<section class="summary">
+  <h2>Client side links</h2>
+  <p>This kind of links are used to connect data that is in the same response but located at a different place</p>
+  <div class="siblings json">
+   <pre>
+  {
+   <span class="field">"items"</span>: [
+      {  
+      <span class="field">"id"</span>:<span class="string">"1"</span>,
+      <span class="field">"name"</span>:<span class="string">"Great product"</span>,
+      <span class="field">"#links"</span>: {
+        <span class="field">"manufacturer"</span>: {
+           <span class="field">"href"</span>:<span class="string">"sailpath://$.manufacturers.a"</span>,
+           <span class="field">"rel"</span>:<span class="string">"manufacturer"</span>
+          }
+        }      
+      },
+      {  
+      <span class="field">"id"</span>:<span class="string">"2"</span>,
+      <span class="field">"name"</span>:<span class="string">"Another great product"</span>,
+      <span class="field">"#links"</span>: {
+        <span class="field">"manufacturer"</span>: {
+           <span class="field">"href"</span>:<span class="string">"sailpath://$.manufacturers.b"</span>,
+           <span class="field">"rel"</span>:<span class="string">"manufacturer"</span>
+          }
+       }      
+      },
+      {  
+      <span class="field">"id"</span>:<span class="string">"3"</span>,
+      <span class="field">"name"</span>:<span class="string">"A third great product"</span>,
+      <span class="field">"#links"</span>: {
+        <span class="field">"manufacturer"</span>: {
+           <span class="field">"href"</span>:<span class="string">"sailpath://$.manufacturers.a"</span>,
+           <span class="field">"rel"</span>:<span class="string">"manufacturer"</span>
+           }
+        }      
+      }
+    ],
+   <span class="field">"manufacturers"</span>: {
+      <span class="field">"a"</span>:{},
+      <span class="field">"b"</span>:{}
+     }
+  }
+    </pre>
+   </div>
  </section>
 </body>
 </html>
