@@ -110,6 +110,28 @@
   }
     </pre>
    </div>
+   <p></p>
  </section>
+ <section class="summary">
+   <h2>Other fields</h2>
+   <p>There are other optional fields that can be used in a link:</p>
+   <ul>
+      <li><strong>title</strong>: is the link's title and can be used for publishing I18N texts, asociated to the link, that the client can use.</li>
+      <li><strong>type</strong>: indicates the media type of the targeted resource.</li>
+      <li><strong>data-{name}</strong>: it alows to specify any simple value asociated to the link. A sort of metadata associated to the resource in the other side of the link.</li>
+  </ul>
+  <div class="siblings json">
+ <pre>
+<span class="field">"#links"</span>: {
+  <span class="field">"similar"</span>: {
+    <span class="field">"href"</span>:<span class="string">"http://api.com/products?similar=1"</span>,
+    <span class="field">"rel"</span>:<span class="string">"similar"</span>
+    <span class="field">"type"</span>:<span class="string">"aplication/vnd.sail+json"</span><span class="comment">//The media type of the resource</span>
+    <span class="field">"title"</span>:<span class="string">"Similar products you might be interested"</span><span class="comment">//I18N text</span>
+    <span class="field">"data-count"</span>:<span class="value">20</span><span class="comment">//How many items there are</span>
+   }          
+ }
+ </pre>
+   </div>
 </body>
 </html>

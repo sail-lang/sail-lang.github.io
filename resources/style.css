@@ -71,10 +71,15 @@ a {
 
 .json .string {
    color: navy;
-   margin-left: 12px;
+   margin-left: 9px;
 }
 
 .json .value {
-   color: navy;
+   color: #9C27B0;
+   margin-left: 9px;
 }
 
+.json .comment {
+   color: gray;
+   margin-left: 9px;
+}
