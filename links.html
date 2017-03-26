@@ -67,7 +67,9 @@
  </section>
 <section class="summary">
   <h2>Client side links</h2>
-  <p>This kind of links are used to connect data that is in the same response but located at a different place</p>
+  <p>This kind of links are used to connect data that is in the same response but located at different places. The most common use of this links is for avoiding the repetition of data in the response.</p>
+  <p> Let say we have a list of products and for performances purposes (avoid extra requests to the backend) the manufacturers information is included in the response. As a manufacturer can be repeated through the products, each manufacturer is included once at some location of the response. Then a link to the specific location is incorporated in each product:</p>
+
   <div class="siblings json">
    <pre>
   {
@@ -110,7 +112,11 @@
   }
     </pre>
    </div>
-   <p></p>
+   <p>In the example above, <strong>sailpath</strong> is used, which is an extension of jsonpath, but the idea is that any local mechanism can be used. Here the advantages of using client side links:</p>
+    <ul>
+      <li>The client doesn't need to materialize the "join" of information in its source code, as the underlying Sail library takes care of it, leading to less code to test and maintain.</li>
+      <li>The client is not couple to the structure, this means, if for some reason the manufacturers information changes its location in the response or, though a bit unlikely, it is moved to the backend, the client wont break as it still remains following the link.</li>
+  </ul>
  </section>
  <section class="summary">
    <h2>Other fields</h2>
