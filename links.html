@@ -139,5 +139,25 @@
  }
  </pre>
    </div>
+</section>
+<section class="summary">
+   <h2>Links grouping</h2>
+   <p>There are scenarios where a response can include a lot of links, where some of them are some how related. Sail provides a mechanism to group links so their access is more easy. Groups can be specified using, of course, a <strong>#</strong> combined with  <strong>#links</strong>, for example <strong>#links#group</strong>. The most common case is for a response that represents a list, where links for faceting (filtering), sorting and paging are provided.</p>
+   <div class="siblings json">
+ <pre>
+ {
+  <span class="field">"#links#facets"</span>: {
+           <span class="comment">//Links for faceting the list</span>
+           },
+  <span class="field">"#links#sorts"</span>: {
+           <span class="comment">//Links for sorting the list</span>
+           },
+  <span class="field">"#links#pages"</span>: {
+           <span class="comment">//Links for paging the list</span>
+           }
+  }
+</pre>
+</div>
+</section>
 </body>
 </html>
